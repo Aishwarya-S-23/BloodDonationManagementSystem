@@ -1,76 +1,3 @@
-# BloodConnect
-
-BloodConnect is a full-stack blood donation management system that helps hospitals, blood banks, colleges, donors, and transport coordinators create and manage donation requests, inventory, and fulfillment in a secure, auditable way.
-
-## Features
-- Role-based authentication (donor, hospital, blood bank, admin)
-- Create, track, and fulfill blood requests
-- Donor management and donation logging
-- Inventory tracking with anti-wastage features
-- Notifications and real-time updates via WebSocket
-- Maps/geolocation integration for donors and transport
-- Admin utilities and audit logs for compliance
-
-## Tech Stack
-- Backend: Node.js, Express, MongoDB (Mongoose), Socket.IO, Twilio
-- Frontend: React (Create React App), Redux Toolkit, Tailwind CSS
-- Dev tools: nodemon, dotenv
-
-## Getting Started
-Prerequisites:
-- Node.js 16+ (18+ recommended)
-- MongoDB (local or Atlas)
-- Git
-
-1. Clone the repo:
-
-```bash
-git clone <repo-url>
-cd BloodConnect
-```
-
-2. Backend setup:
-
-```bash
-cd backend
-npm install
-cp env.example .env   # or copy values from env.example into backend/.env
-npm run dev           # starts server with nodemon
-# Production: npm start
-```
-
-3. Frontend setup:
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-## Run (development)
-- Backend (dev): from `backend` run `npm run dev`
-- Frontend: from `frontend` run `npm start`
-
-## Folder structure (overview)
-- `backend/` — API server, controllers, models, routes, services, middleware
-- `frontend/` — React single-page application (CRA)
-- `manual-test-scripts/` — manual test utilities and scripts
-- Root-level helper scripts: `cleanup-test-users.js`, `start_backend.bat`, etc.
-
-## Environment & Secrets
-Do NOT commit secrets to the repository. Copy `backend/env.example` to `backend/.env` and set:
-- `MONGO_URI`
-- `JWT_SECRET`
-- `TWILIO_*` (if used)
-
-## Future improvements
-- Add unit and integration tests (Jest, Supertest, Cypress)
-- Add ESLint and Prettier and enforce in CI
-- Add GitHub Actions for linting, test, and build
-- Provide Docker and Docker Compose for local development
-
-## License
-This project is available under the MIT License. See the `LICENSE` file for details.
 # Blood Connect - Blood Donation Management System Backend
 
 A production-ready, healthcare-compliant REST API backend for managing blood donation requests, inventory, and donor coordination.
@@ -120,19 +47,6 @@ npm install
 3. Create `.env` file:
 ```bash
 cp .env.example .env
-```
-
-4. Configure environment variables in `.env`:
-```env
-PORT=3000
-NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/bloodconnect
-JWT_SECRET=your-super-secret-jwt-key-change-in-production
-JWT_EXPIRE=7d
-TWILIO_ACCOUNT_SID=your-twilio-account-sid
-TWILIO_AUTH_TOKEN=your-twilio-auth-token
-TWILIO_PHONE_NUMBER=+1234567890
-CORS_ORIGIN=http://localhost:3000
 ```
 
 5. Start MongoDB (if running locally):
