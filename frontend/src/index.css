@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+  
+  body {
+    @apply bg-background-light-50 text-slate-800 antialiased leading-relaxed;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 1rem; /* 16px base for accessibility */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Ensure scalable font sizes - support browser zoom up to 200% */
+  html {
+    font-size: 16px; /* Base font size */
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold text-slate-900 leading-tight;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-strong {
+    @apply bg-white/90 backdrop-blur-lg border border-white/30;
+  }
+
+  /* Soft button styles */
+  .btn-primary {
+    @apply bg-primary-500 text-white px-6 py-3 rounded-2xl font-medium
+           hover:bg-primary-600 hover:scale-[1.02] active:scale-[0.98]
+           transition-all duration-300 ease-out
+           shadow-soft hover:shadow-soft-lg focus:outline-none focus:ring-2
+           focus:ring-primary-500/50 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-background-light-100 text-slate-700 px-6 py-3 rounded-2xl font-medium
+           hover:bg-background-light-200 hover:scale-[1.02] active:scale-[0.98]
+           transition-all duration-300 ease-out
+           shadow-soft hover:shadow-soft-lg focus:outline-none focus:ring-2
+           focus:ring-slate-300 focus:ring-offset-2;
+  }
+
+  .btn-emergency {
+    @apply bg-emergency text-white px-6 py-3 rounded-2xl font-semibold
+           hover:bg-emergency-light hover:scale-[1.02] active:scale-[0.98]
+           transition-all duration-300 ease-out
+           shadow-glow-sm hover:shadow-glow focus:outline-none focus:ring-2
+           focus:ring-emergency/50 focus:ring-offset-2;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-3xl shadow-soft p-6 hover:shadow-soft-lg
+           transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01];
+  }
+
+  .card-urgency-critical {
+    @apply border-l-4 border-emergency;
+  }
+
+  .card-urgency-high {
+    @apply border-l-4 border-warning-500;
+  }
+
+  .card-urgency-medium {
+    @apply border-l-4 border-primary-500;
+  }
+
+  .card-urgency-low {
+    @apply border-l-4 border-background-light-300;
+  }
+
+  /* Form input styles */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-2xl border border-slate-200
+           bg-white text-slate-900 placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-primary-500/30
+           focus:border-primary-500 hover:border-primary-400
+           transition-all duration-300 ease-out
+           disabled:bg-slate-50 disabled:cursor-not-allowed;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-slate-700 mb-2;
+  }
+
+  /* Pill navigation */
+  .nav-pill {
+    @apply flex items-center justify-center gap-2 px-4 py-2 rounded-full
+           text-sm font-medium transition-all duration-300 ease-out
+           focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2;
+  }
+
+  .nav-pill-active {
+    @apply bg-primary-500 text-white shadow-soft;
+  }
+
+  .nav-pill-inactive {
+    @apply text-slate-600 hover:text-slate-900 hover:bg-slate-100
+           transition-colors duration-200 ease-out
+           focus:text-slate-900 focus:bg-slate-100;
+  }
+  
+  /* Global smooth transitions for interactive elements */
+  button, a, [role="button"] {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Hover states with smooth transitions */
+  *:hover {
+    transition-duration: 0.2s, 0.2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-pending {
+    @apply bg-warning-100 text-warning-700;
+  }
+
+  .badge-processing {
+    @apply bg-primary-100 text-primary-700;
+  }
+
+  .badge-fulfilled {
+    @apply bg-success-100 text-success-700;
+  }
+
+  .badge-critical {
+    @apply bg-emergency/10 text-emergency border border-emergency/20;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-soft::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  .scrollbar-soft::-webkit-scrollbar-track {
+    @apply bg-slate-100 rounded-full;
+  }
+
+  .scrollbar-soft::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full hover:bg-slate-400
+           transition-colors duration-200 ease-out;
+  }
+  
+  /* Accessibility: Skip link for keyboard navigation */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-500 focus:text-white
+           focus:rounded-lg focus:shadow-lg;
+  }
+  
+  /* Ensure minimum font sizes for accessibility */
+  p, span, div, a, button, input, select, textarea, label {
+    font-size: clamp(0.875rem, 1vw, 1rem); /* Min 14px, max 16px, scales with viewport */
+  }
+  
+  /* WCAG-friendly focus indicators */
+  *:focus-visible {
+    outline: 2px solid #BC2F3C;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Text gradients */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent;
+  }
+}
+
+
+/* Custom marker styles */
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Soft map styling - desaturated and calm */
+.map-container-soft .leaflet-container {
+  filter: saturate(0.7) brightness(1.05) contrast(0.95);
+}
+
+.map-container-soft .leaflet-tile-container img {
+  filter: saturate(0.7) brightness(1.05) contrast(0.95);
+}
+
+/* Pulse animation for emergency */
+@keyframes pulse-emergency {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(139, 38, 53, 0.4);
+  }
+  50% {
+    opacity: 0.9;
+    box-shadow: 0 0 0 8px rgba(139, 38, 53, 0);
+  }
+}
+
+.animate-pulse-emergency {
+  animation: pulse-emergency 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  left: 50%;
+  animation: ripple 0.6s;
+  opacity: 0;
+}
+
+.ripple:active::after {
+  animation: ripple 0.6s;
+}
+
